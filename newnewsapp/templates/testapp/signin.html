@@ -1,0 +1,36 @@
+{% extends "testapp/base.html" %}
+{% block title %}signin{% endblock %}
+ {% block content %}
+{% load static %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+
+</head>
+<body>
+<h1>SIGN IN </h1>
+<div class="login">
+	<form id="login" method="POST">{% csrf_token %}
+		<label><b>First Name</b><br>
+		<input type="text" name="names" id="uname" placeholder="enter user name">
+		</label><br>
+		<label><b>User Name</b><br>
+		<input type="text" name="username" id="uname" placeholder="enter user name">
+		</label><br>
+		<label><b>Mobile</b><br>
+		<input type="text" name="mobile" id="uname" placeholder="enter mobile">
+		</label><br>
+		<label><b>Email</b><br>
+		<input type="text" name="email" id="uname" placeholder="enter email">
+		</label><br>
+		<label><b>password</b>
+		<input type="password" name="password" id="pass" placeholder="enter password">
+		</label><br><br>
+		<input type="submit" name="login" id="btn" value="SIGN IN HERE"><br><br>
+		<input type="checkbox" name="check" id="check"><span>Remember me</span>
+		<a href="/accounts/login/">LOGIN</a>
+
+	</form>
+</div>
+
+
+{% endblock %}

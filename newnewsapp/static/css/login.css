@@ -1,0 +1,58 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-image: url("/static/img/login.jpg");
+	font-family: ariel;
+
+}
+.login{
+	width: 500px;
+	overflow: hidden;
+	margin: auto;
+	margin: 20 0 0 450px;
+	padding: 80px;
+	border-radius: 15px;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+#login{
+	margin: 30px 30px 30px 30px;
+}
+h1{
+	text-align: center;
+	color: red;
+	padding: 20px;
+}
+label{
+	color: red;
+	font-size: 17px;
+}
+#uname,#pass{
+	width: 300px;
+	height: 30px;
+	border: none;
+	border-radius: 17px;
+	padding-left: 9px;
+	margin: 2px;
+}
+#btn{
+	width: 300px;
+	height: 30px;
+	border: none;
+	border-radius: 17px;
+	padding-left: 7px;
+	background-color: black;
+	color: white;
+}
+span{
+	color: black;
+	font-size: 17px;
+}
+a{
+	float: right;
+	color: red;
+}
+
+
+
+
+

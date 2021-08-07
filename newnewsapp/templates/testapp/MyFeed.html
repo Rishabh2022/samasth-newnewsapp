@@ -1,0 +1,72 @@
+{% extends "testapp/base.html" %}
+{% load static %}
+{% block title %}Health{% endblock %}
+ {% block content %}
+       
+ <br>
+ <br>
+ <form action="/myfeedreply" method="POST">{% csrf_token %}
+    <center><div class="col-lg-6"><h2>See News according to your choice</h2></div> </center>
+    <center>    
+        <div class="col-lg-4 mb-3">
+    <select class="custom-select" name="country">
+        <option selected>Choose Country...</option>
+        <option >India</option>
+        <option >United States</option>
+        <option >Russia</option>
+        <option >China</option>
+        <option >United Kingdom</option>
+      </select>
+    </div>
+</center>
+<center>    
+    <div class="col-lg-4">
+      <select class="custom-select" name="category">
+        <option selected>Choose Category...</option>
+        <option >business</option>
+        <option >entertainment</option>
+        <option >health</option>
+        <option >science</option>
+        <option >sports</option>
+        <option >technology</option>
+    </select>
+    </div>
+</center>
+      <br>
+      <center>
+      <button type="submit" class="btn btn-primary mb-3">Submit</button>
+    </center>
+     </form>
+          <!-- Tab News Start-->
+          
+    {% if check %}
+        <div class="tab-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#featured">My Feeds</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="featured" class="container tab-pane active">
+                                {% for title,desc,img,readmore in myfeed %}
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src={{img}} />
+                                    </div>
+                                    <div class="tn-title">
+                                        <a href="{{readmore}}">{{title}}</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "testapp/base.html" %}
+{% block title %}login{% endblock %}
+ {% block content %}
+{% load static %}
+<html>
+<head>
+	<title>login</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+
+</head>
+<body>
+<h1>login page</h1>
+<div class="login">
+	<form id="login" method="POST" action="/login/" >{% csrf_token %}
+		<label><b>user name</b>
+		<input type="text" name="username" id="uname" placeholder="enter user name">
+		</label><br>
+		<label><b>password</b>
+		<input type="password" name="password" id="pass" placeholder="enter password">
+		</label><br><br>
+		<input type="submit" name="login" id="btn" value="LOGIN HERE"><br><br>
+		<input type="checkbox" name="check" id="check"><span>Remember me</span>
+		<a href="/signup">signup</a><br>
+		<a href="#">Forgot username/password</a><br>
+		
+
+	</form>
+</div>
+
+</body>
+</html>
+{% endblock %}

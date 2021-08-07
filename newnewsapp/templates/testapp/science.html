@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+{% extends "testapp/base.html"%}
+{% load static %}
+{% block content %}
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Science News</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Bootstrap News Template - Free HTML Templates" name="keywords">
+        <meta content="Bootstrap News Template - Free HTML Templates" name="description">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet"> 
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="/static/lib/slick/slick.css" rel="stylesheet">
+        <link href="/static/lib/slick/slick-theme.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="/static/css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        
+        <!-- Single News Start-->
+        <div class="single-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="sn-container">
+                            {% for title,desc,img,readmore in mylist %}
+                            <div class="sn-img">
+                                <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                            </div>
+                            <div class="sn-content">
+                                <h3 class="sn-title">{{title}}</h3>
+                                <b><p>{{desc}}....<a href="{{readmore}}">Readmore</a></p></b>
+                            
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="sn-related">
+                            <h2>Related News</h2>
+                            
+                            <div class="row sn-slider">
+                                {% for title,desc,img,readmore in related %}
+                                <div class="col-md-4">
+                                    <div class="sn-img">
+                                        <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                        <div class="sn-title">
+                                            <marquee> <a href="{{readmore}}">{{title}}</a></marquee>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            
+                            </div>
+                        </div>
+                    <div class="sn-related">
+                        <h2>international news</h2>
+                        
+                        <div class="row sn-slider">
+                            {% for title,desc,img,readmore in international %}
+                            <div class="col-md-4">
+                                <div class="sn-img">
+                                    <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                    <div class="sn-title">
+                                        <marquee> <a href="{{readmore}}">{{title}}</a></marquee>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col-lg-4">
+                        <div class="sidebar">
+                            <div class="sidebar-widget">
+                                <h2 class="sw-title">In This Category</h2>
+                                <div class="news-list">
+                                    {%for href,title in yt%}
+                                    <div class="nl-item">
+                                        <div class="nl-img">
+                                           <iframe  src="{{href}}"></iframe>
+                                        </div>
+                                        <div class="nl-title">
+                                            <a href="{{readmore}}" >{{title}}</a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {%for title,desc,img,readmore in category%}
+                                    <div class="nl-item">
+                                        <div class="nl-img">
+                                            <img  src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                        </div>
+                                        <div class="nl-title">
+                                            <a href="{{readmore}}" >{{title}}</a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                   
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="sidebar-widget">
+                                <div class="tab-news">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="pill" href="#popular">Earth</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="pill" href="#featured">Humans</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="pill" href="#latest">Space</a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="latest" class="container tab-pane fade">
+                                            {% for title,desc,img,readmore in space %}
+                                            <div class="tn-news">
+                                                <div class="tn-img">
+                                                    <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                                </div>
+                                                <div class="tn-title">
+                                                    <a href="{{readmore}}">{{title}}</a>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div id="popular" class="container tab-pane active">
+                                            {% for title,desc,img,readmore in earth %}
+                                            <div class="tn-news">
+                                                <div class="tn-img">
+                                                    <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                                </div>
+                                                <div class="tn-title">
+                                                    <a href="{{readmore}}">{{title}}</a>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div id="featured" class="container tab-pane fade">
+                                            {% for title,desc,img,readmore in humans %}
+                                            <div class="tn-news">
+                                                <div class="tn-img">
+                                                    <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                                </div>
+                                                <div class="tn-title">
+                                                    <a href="{{readmore}}">{{title}}</a>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Single News End-->        
+        
+        
+
+        <!-- Back to Top -->
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/lib/easing/easing.min.js"></script>
+        <script src="/static/lib/slick/slick.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>
+{% endblock %}

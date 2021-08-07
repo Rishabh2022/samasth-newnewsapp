@@ -1,0 +1,453 @@
+{% extends "testapp/base.html" %}
+{% load static %}
+{% block content %}
+        <!-- Top News Start-->
+        <div class="top-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 tn-left">
+                        <div class="row tn-slider">
+                            {% for title,desc,img,readmore in row %}
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img src={{img}} onerror="this.src='/static/img/imgnot.png'">
+                                    <div class="tn-title">
+                                        <marquee><a href={{readmore}}>{{title}}</a></marquee>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6 tn-right">
+                        <div class="row">
+                            {% for title,desc,img,readmore in row1 %}
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                    <div class="tn-title">
+                                        <marquee><a href="{{readmore}}">{{title}}</a></marquee>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top News End-->
+
+        <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Sports</h2>
+                        <div class="row cn-slider">
+                        {% for title,desc,img,readmore in sports %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                    <div class="cn-title">
+                                        <marquee> <a href="{{readmore}}">{{title}}</a></marquee>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Technology</h2>
+                        <div class="row cn-slider">
+                            {% for title,desc,img,readmore in technology %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                    <div class="cn-title">
+                                        <marquee><a href="{{readmore}}">{{title}}</a></marquee>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+        <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Business</h2>
+                        <div class="row cn-slider">
+                            {% for title,desc,img,readmore in business %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                    <div class="cn-title">
+                                        {% if user.is_authenticated and not user.is_staff %}
+                                        <marquee><a href="{{readmore}}">{{title}}</a></marquee>
+                                        {% else %}
+                                        <marquee><a href="/prompt">{{title}}</a></marquee>
+                                        {%endif%}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Entertainment</h2>
+                        <div class="row cn-slider">
+                            {% for title,desc,img,readmore in entertainment %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                    <div class="cn-title">
+                                        {% if user.is_authenticated and not user.is_staff %}
+                                        <marquee><a href="{{readmore}}">{{title}}</a></marquee>
+                                        {% else %}
+                                        <marquee><a href="/prompt">{{title}}</a></marquee>
+                                        {%endif%}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+        
+                <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Health</h2>
+                        <div class="row cn-slider">
+                            {% for title,desc,img,readmore in health %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                    
+                                    <div class="cn-title">
+                                        {% if user.is_authenticated and not user.is_staff %}
+                                        <marquee><a href="{{readmore}}">{{title}}</a></marquee>
+                                        {% else %}
+                                        <marquee><a href="/prompt">{{title}}</a></marquee>
+                                        {%endif%}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Science</h2>
+                        <div class="row cn-slider">
+                            {% for title,desc,img,readmore in science %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    
+                                    <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'"/>
+                                    <!-- {% if user.is_authenticated and not user.is_staff %}
+                                    <div style="float: right;">
+                                        <form action="/savebookmark" method="POST">{% csrf_token %}
+                                            <input type="hidden" value={{img}} name="image">
+                                            <input type="hidden" value="{{title}}" name="title">
+                                            <button type="submit" class="btn btn-light" style="color: #ffffff;
+                                            background: #ffffff;
+                                            border: 1px solid #ffffff;top: 0;right: 0; position: absolute;">
+                                                <i class="fa fa-bookmark" aria-hidden="true" style="color:black"></i>
+                                            </button>
+                                        </form> 
+                                        </div>
+                                        
+                                     {% endif %} -->
+                                    
+                                    <div class="cn-title">
+                                        {% if user.is_authenticated and not user.is_staff %}
+                                        <marquee><a href="{{readmore}}">{{title}}</a></marquee>
+                                        {% else %}
+                                        <marquee><a href="/prompt">{{title}}</a></marquee>
+                                        {%endif%}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+        <!-- Tab News Start-->
+        <div class="tab-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#election">Election News</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#climate">Climate News</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#corona">Corona News</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="election" class="container tab-pane active">
+                                {% for title,desc,img,readmore in electionlist%}
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{img}}" onerror="this.src='/static/img/noimg.png'" />
+                                    </div>
+                                    <div class="tn-title">
+                                        {% if user.is_authenticated and not user.is_staff %}
+                                        <a href="{{readmore}}">{{title}}</a>
+                                        {% else %}
+                                        <a href="/prompt">{{title}}</a>
+                                        {%endif%}
+                                    </div>
+                                    {% if user.is_authenticated and not user.is_staff %}
+                                    <div style="float: right;">
+                                        <form action="/savebookmark" method="POST">{% csrf_token %}
+                                            <input type="hidden" value={{img}} name="image">
+                                            <input type="hidden" value="{{title}}" name="title">
+                                            <input type="hidden" value="{{readmore}}" name="readmore">
+                                            <button type="submit" class="btn btn-light" style="color: #ffffff;
+                                            background: #ffffff;
+                                            border: 1px solid #ffffff;margin-right: 3px;">
+                                                <i class="fa fa-bookmark" aria-hidden="true" style="color:black"></i>
+                                            </button>
+                                        </form> 
+                                        </div>
+                                        
+                                     {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div id="climate" class="container tab-pane fade">
+                                {% for title,desc,img,readmore in climatelist%}
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{img}}" onerror="this.src='/static/img/noimg.png'" />
+                                    </div>
+                                    <div class="tn-title">
+                                        {% if user.is_authenticated and not user.is_staff %}
+                                        <a href="{{readmore}}">{{title}}</a>
+                                        {% else %}
+                                        <a href="/prompt">{{title}}</a>
+                                        {%endif%}
+                                    </div>
+                                    {% if user.is_authenticated and not user.is_staff %}
+                                    <div style="float: right;">
+                                        <form action="/savebookmark" method="POST">{% csrf_token %}
+                                            <input type="hidden" value={{img}} name="image">
+                                            <input type="hidden" value="{{title}}" name="title">
+                                            <input type="hidden" value="{{readmore}}" name="readmore">
+                                            <button type="submit" class="btn btn-light" style="color: #ffffff;
+                                            background: #ffffff;
+                                            border: 1px solid #ffffff;margin-top: auto;">
+                                                <i class="fa fa-bookmark" aria-hidden="true" style="color:black"></i>
+                                            </button>
+                                        </form> 
+                                        </div>
+                                        
+                                     {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div id="corona" class="container tab-pane fade">
+                                {% for title,desc,img,readmore in coronalist%}
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{img}}"onerror="this.src='/static/img/noimg.png'" />
+                                    </div>
+                                    <div class="tn-title">
+                                        {% if user.is_authenticated and not user.is_staff %}
+                                        <a href="{{readmore}}">{{title}}</a>
+                                        {% else %}
+                                        <a href="/prompt">{{title}}</a>
+                                        {%endif%}
+                                    </div>
+                                    {% if user.is_authenticated and not user.is_staff %}
+                                    <div style="float: right;">
+                                        <form action="/savebookmark" method="POST">{% csrf_token %}
+                                            <input type="hidden" value={{img}} name="image">
+                                            <input type="hidden" value="{{title}}" name="title">
+                                            <input type="hidden" value="{{readmore}}" name="readmore">
+                                            <button type="submit" class="btn btn-light" style="color: #ffffff;
+                                            background: #ffffff;
+                                            border: 1px solid #ffffff;margin-right: auto;">
+                                                <i class="fa fa-bookmark" aria-hidden="true" style="color:black"></i>
+                                            </button>
+                                        </form> 
+                                        </div>
+                                        
+                                     {% endif %}
+                                    
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#job">Job News</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#inflation">Inflation News</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#latest">Latest News</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="job" class="container tab-pane active">
+                                {% for title,desc,img,readmore in joblist%}
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{img}}" onerror="this.src='/static/img/noimg.png'" />
+                                    </div>
+                                    <div class="tn-title">
+                                        {% if user.is_authenticated and not user.is_staff %}
+                                        <a href="{{readmore}}">{{title}}</a>
+                                        {% else %}
+                                        <a href="/prompt">{{title}}</a>
+                                        {%endif%}
+                                    </div>
+                                    {% if user.is_authenticated and not user.is_staff %}
+                                    <div style="float: right;">
+                                        <form action="/savebookmark" method="POST">{% csrf_token %}
+                                            <input type="hidden" value={{img}} name="image">
+                                            <input type="hidden" value="{{title}}" name="title">
+                                            <input type="hidden" value="{{readmore}}" name="readmore">
+                                            <button type="submit" class="btn btn-light" style="color: #ffffff;
+                                            background: #ffffff;
+                                            border: 1px solid #ffffff;margin-right: auto;">
+                                                <i class="fa fa-bookmark" aria-hidden="true" style="color:black"></i>
+                                            </button>
+                                        </form> 
+                                        </div>
+                                        
+                                     {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div id="inflation" class="container tab-pane fade">
+                                {% for title,desc,img,readmore in inflationlist%}
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{img}}" onerror="this.src='/static/img/imgnot.png'" />
+                                    </div>
+                                    <div class="tn-title">
+                                        {% if user.is_authenticated and not user.is_staff %}
+                                        <a href="{{readmore}}">{{title}}</a>
+                                        {% else %}
+                                        <a href="/prompt">{{title}}</a>
+                                        {%endif%}
+                                    </div>
+                                    {% if user.is_authenticated and not user.is_staff %}
+                                    <div style="float: right;">
+                                        <form action="/savebookmark" method="POST">{% csrf_token %}
+                                            <input type="hidden" value={{img}} name="image">
+                                            <input type="hidden" value="{{title}}" name="title">
+                                            <input type="hidden" value="{{readmore}}" name="readmore">
+                                            <button type="submit" class="btn btn-light" style="color: #ffffff;
+                                            background: #ffffff;
+                                            border: 1px solid #ffffff;margin-right: auto;">
+                                                <i class="fa fa-bookmark" aria-hidden="true" style="color:black"></i>
+                                            </button>
+                                        </form> 
+                                        </div>
+                                        
+                                     {% endif %}
+                                </div>
+                                {%endfor%}
+                            </div>
+                            <div id="latest" class="container tab-pane fade">
+                                {% for title,desc,img,readmore in latestlist%}
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{img}}" onerror="this.src='/static/img/noimg.png'"/>
+                                    </div>
+                                    <div class="tn-title">
+                                        {% if user.is_authenticated and not user.is_staff %}
+                                        <a href="{{readmore}}">{{title}}</a>
+                                        {% else %}
+                                        <a href="/prompt">{{title}}</a>
+                                        {%endif%}
+                                    </div>
+                                    {% if user.is_authenticated and not user.is_staff %}
+                                    <div style="float: right;">
+                                        <form action="/savebookmark" method="POST">{% csrf_token %}
+                                            <input type="hidden" value={{img}} name="image">
+                                            <input type="hidden" value="{{title}}" name="title">
+                                            <input type="hidden" value="{{readmore}}" name="readmore">
+                                            <button type="submit" class="btn btn-light" style="color: #ffffff;
+                                            background: #ffffff;
+                                            border: 1px solid #ffffff;margin-right: auto;">
+                                                <i class="fa fa-bookmark" aria-hidden="true" style="color:black"></i>
+                                            </button>
+                                        </form> 
+                                        </div>
+                                        
+                                     {% endif %}
+                                </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tab News Start-->
+
+        <!-- Main News Start-->
+        <div class="main-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="row">
+                            {% for href,title in vod %}
+                            <div class="col-md-4">
+                                <div class="mn-img">
+                                    <iframe src="{{href}}"></iframe>
+                                    <div class="mn-title">
+                                        <marquee><a >{{title}}</a></marquee>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="mn-list">
+                            <h2>International</h2>
+                            <ul>
+                                {% for title,desc,img,readmore in readhere%}
+                                <li><a href="{{readmore}}">{{title}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main News End-->
+{% endblock %}

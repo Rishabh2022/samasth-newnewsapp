@@ -1,0 +1,48 @@
+{% extends "testapp/base.html"%}
+{% load static %}
+{% block title %}BookMarks{% endblock %}
+ {% block content %}
+       
+ <br>
+ <br>
+        <div class="tab-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#featured">My Bookmarks</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="featured" class="container tab-pane active">
+                                {% for bookmark in user_bookmark %}
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src={{bookmark.image}} />
+                                    </div>
+                                    <div class="tn-title">
+                                        <a href="{{bookmark.readmore}}">{{bookmark.title}}</a>
+                                    </div>
+                                    <div>
+                                        <form action="/deletebookmark" method="POST">{% csrf_token %}
+                                            <input type="hidden" value="{{bookmark.sno}}" name="sno">
+                                            <button type="submit" class="btn btn-light" style="color: #ffffff;
+                                            background: #ffffff;
+                                            border: 1px solid #ffffff;margin-right: 300px;">
+                                                <i class="fa fa-trash" aria-hidden="true" style="color:black"></i>
+                                            </button>
+                                        </form> 
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <br>
+                    <br>
+{% endblock %}
